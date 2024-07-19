@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block content %}
+<form method="POST">
+    <h2>Конвертер валют</h2><hr>
+    <input type="text" name="amount" placeholder="Введите сумму" class="input-field" />
+    <h6>Отдаем:</h6>
+    <select name="from_curr" id="from" class="select-field">
+        <!-- Опции для выбора валюты отправителя -->
+    </select>
+    <h6>Получаем:</h6>
+    <select name="to_curr" id="to" class="select-field">
+        <!-- Опции для выбора валюты получателя -->
+    </select>
+    <button type="submit" class="submit-button">Рассчитать</button>
+</form>
+{% endblock %}
