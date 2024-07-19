@@ -4,11 +4,11 @@
 <form method="POST">
     {% csrf_token %}
     <h2>Конвертер валют</h2><hr>
-    <input type="text" name="amount" placeholder="Введите сумму" class="input-field" />
+    <input type="text" name="from_amount" placeholder="Введите сумму" {% if from_amount %}value="{{from_amount}}"{% endif %} class="input-field" />
     <h6>Отдаем:</h6>
     <select name="from_curr" id="from" class="select-field">
         {% for curr in currencies %}
-            fdaf<option value="{{ curr }}" {% if from_curr == curr %} selected {% endif %}> {{ curr }} </option>
+            <option value="{{ curr }}" {% if from_curr == curr %} {% endif %}> {{ curr }} </option>
         {% endfor %}
         <!-- Опции для выбора валюты отправителя -->
     </select>
@@ -18,6 +18,15 @@
             <option value="{{ curr }}" {% if to_curr == curr %} selected {% endif %}> {{ curr }} </option>
         {% endfor %}
     </select>
+    {% if converted %}
+        <div class="card col-6  p-0 m-auto">
+            <div class="card-header text-center">
+                <h5>Отдаем <b>{{ from_curr }}</b> Получаем <b>{{to_curr}}</b> </h5>
+
+                <div class="card-body"> {{converted}}</div>
+            </div>
+        </div>
+    {% endif %}
     <button type="submit" class="submit-button">Рассчитать</button>
 </form>
 {% endblock %}
