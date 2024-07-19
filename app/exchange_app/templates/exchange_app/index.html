@@ -2,15 +2,21 @@
 {% load static%}
 {% block content %}
 <form method="POST">
+    {% csrf_token %}
     <h2>Конвертер валют</h2><hr>
     <input type="text" name="amount" placeholder="Введите сумму" class="input-field" />
     <h6>Отдаем:</h6>
     <select name="from_curr" id="from" class="select-field">
+        {% for curr in currencies %}
+            fdaf<option value="{{ curr }}" {% if from_curr == curr %} selected {% endif %}> {{ curr }} </option>
+        {% endfor %}
         <!-- Опции для выбора валюты отправителя -->
     </select>
     <h6>Получаем:</h6>
     <select name="to_curr" id="to" class="select-field">
-        <!-- Опции для выбора валюты получателя -->
+        {% for curr in currencies %}
+            <option value="{{ curr }}" {% if to_curr == curr %} selected {% endif %}> {{ curr }} </option>
+        {% endfor %}
     </select>
     <button type="submit" class="submit-button">Рассчитать</button>
 </form>
